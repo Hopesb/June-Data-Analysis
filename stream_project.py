@@ -38,14 +38,17 @@ def yearly_happiness(year):
 
 def card(Country, year):
     country_df = df[df["Country name"] == Country]
-    happiness = country_df[country_df["year"] == year]["Happiness score"]
-    pc = country_df[country_df["year"] == year]["Perceptions of corruption"]
-    gdp = country_df[country_df["year"] == year]["Log GDP per capita"]
+    if year == country_df['year']:
+        happiness = country_df[country_df["year"] == year]["Happiness score"]
+        pc = country_df[country_df["year"] == year]["Perceptions of corruption"]
+        gdp = country_df[country_df["year"] == year]["Log GDP per capita"]
     # Create 3 columns.
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Happiness Score", happiness)
-    col2.metric("GDP per Capita", gdp)
-    col3.metric("Perception of Corruption", pc)
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Happiness Score", happiness)
+        col2.metric("GDP per Capita", gdp)
+        col3.metric("Perception of Corruption", pc)
+    else:
+        pass
 
 def country_gdp(Country):
     """
